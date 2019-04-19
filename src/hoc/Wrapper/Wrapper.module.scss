@@ -1,0 +1,7 @@
+@import '../../variables.scss';
+
+.wrapper {
+  margin: 0 auto;
+  max-width: calculateWidth(12);
+  padding: 0 (calculateWidth(1) + $column-gap);
+}

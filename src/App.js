@@ -1,26 +1,36 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Route, Switch } from 'react-router-dom';
+
+import Layout from './hoc/Layout/Layout';
+import Wrapper from './hoc/Wrapper/Wrapper';
+import ProductDetail from './containers/ProductDetail/ProductDetail';
+import SearchResults from './containers/SearchResults/SearchResults';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <Layout>
+        <Switch>
+          <Route path="/items/:id" component={ProductDetail} />
+          <Route path="/items" component={SearchResults} />
+          <Route
+            path="/"
+            exact
+            render={() => (
+              <Wrapper>
+                <h2>Ingresa lo que estás buscando</h2>
+              </Wrapper>
+            )}
+          />
+          <Route
+            render={() => (
+              <Wrapper>
+                <h2>Página no encontrada</h2>
+              </Wrapper>
+            )}
+          />
+        </Switch>
+      </Layout>
     );
   }
 }

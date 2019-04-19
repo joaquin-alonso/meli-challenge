@@ -1,0 +1,16 @@
+@import '../../variables.scss';
+
+.header {
+  background-color: $meli-main;
+  height: 56px;
+}
+
+.headerWrapper {
+  align-items: center;
+  display: flex;
+  height: 100%;
+}
+
+.logoWrapper {
+  flex-basis: calculateWidth(1);
+}

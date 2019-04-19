@@ -1,0 +1,17 @@
+/* Colors */
+$meli-main: #ffe600;
+$gray-dark: #333;
+$gray-semidark: #666;
+$gray: #999;
+$gray-light: #eee;
+$flashy: #3483fa;
+
+/* Grid */
+$column-count: 12;
+$column-width: 84px;
+$column-gap: 16px;
+$column-gap-large: 32px;
+
+@function calculateWidth($ColumnCount) {
+  @return $ColumnCount * $column-width + ($ColumnCount - 1) * $column-gap;
+}
