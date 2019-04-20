@@ -1,0 +1,22 @@
+@import '../../variables.scss';
+
+.productList {
+  background-color: #fff;
+  border-radius: 4px;
+}
+
+.productList ul {
+  margin: 0;
+  padding: 0 $column-gap;
+}
+
+.productList li {
+  border-top: 1px solid $gray-light;
+  display: block;
+  padding: $column-gap 0;
+  width: 100%;
+}
+
+.productList li:last-child {
+  border: 0;
+}
