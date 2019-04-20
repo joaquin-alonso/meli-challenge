@@ -1,0 +1,16 @@
+@import '../../variables.scss';
+
+.searchResults {
+  padding: 50px 0 $column-gap-large;
+  position: relative;
+}
+
+.breadcrumbWrap {
+  align-items: center;
+  display: flex;
+  height: 50px;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}

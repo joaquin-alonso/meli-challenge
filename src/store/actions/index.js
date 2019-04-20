@@ -19,7 +19,7 @@ export const fetchSearchResults = query => {
         dispatch(setSearchResults(response.data));
       })
       .catch(error => {
-        dispatch(fetchSearchResultsFail(error));
+        dispatch(fetchSearchResultsFail(error.response));
       });
   };
 };
@@ -40,6 +40,6 @@ export const setSearchResults = searchResults => {
 export const fetchSearchResultsFail = error => {
   return {
     type: actionTypes.FETCH_SEARCH_RESULTS_FAIL,
-    error
+    error: error.status
   };
 };

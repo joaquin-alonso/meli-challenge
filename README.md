@@ -1,6 +1,6 @@
 # MeLi's Front End Challenge
 
-A simple UI to search and view items from Mercado Libre. This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). As the state of the app is pretty simple Redux is not being used.
+A simple UI to search and view items from Mercado Libre. This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Installation
 
@@ -12,12 +12,9 @@ $ npm install
 
 Create a .env file by copying the contents on .env-sample. Possible environment values:
 
-| Variable       | Description                              | Default value                 |
-| -------------- | ---------------------------------------- | ----------------------------- |
-| PORT           | Port on which the API should run         | 80                            |
-| LOG_LEVEL      | Log level for Bunyan                     | warn                          |
-| MELI_API       | Host for the MeLi's API                  | https://api.mercadolibre.com/ |
-| CORS_WHITELIST | Comma delimited hostnames to enable CORS | \*                            |
+| Variable           | Description                       | Default value        |
+| ------------------ | --------------------------------- | -------------------- |
+| REACT_APP_MELI_API | Host for the MeLi Challenge's API | http://localhost:80/ |
 
 Start the app
 

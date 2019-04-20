@@ -32,7 +32,7 @@ class searchInput extends Component {
     e.preventDefault();
 
     if (this.state.searchQuery.length) {
-      this.props.onSearchSubmit(this.state.searchQuery);
+      //this.props.onSearchSubmit(this.state.searchQuery);
 
       this.props.history.push({
         pathname: '/items',

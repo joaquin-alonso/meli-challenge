@@ -1,0 +1,29 @@
+@import '../../variables.scss';
+
+.breadcrumb {
+  align-items: center;
+  display: flex;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.breadcrumbItem {
+  color: $gray;
+  font-size: 14px;
+  line-height: 18px;
+}
+
+.breadcrumbItem:after {
+  content: '›';
+  margin: 0 8px;
+}
+
+.breadcrumbItem:last-child {
+  font-weight: 700;
+}
+
+.breadcrumbItem:last-child:after {
+  content: '';
+  display: none;
+}

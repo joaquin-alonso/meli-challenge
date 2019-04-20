@@ -1,52 +1,64 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import qs from 'query-string';
 import * as actions from '../../store/actions/';
 
 import Wrapper from '../../hoc/Wrapper/Wrapper';
 import Breadcrumb from '../../components/Breadcrumb/Breadcrumb';
 import ProductList from '../../components/ProductList/ProductList';
 import Spinner from '../../components/UI/Spinner/Spinner';
+import styles from './SearchResults.module.scss';
 
 class SearchResults extends Component {
-  state = {
-    loading: true
-  };
-
   componentDidMount() {
-    console.log('MOUNT');
-    // Check for a initial query in the url
-    const query = new URLSearchParams(this.props.location.search);
-    for (let param of query.entries()) {
-      if (param[0] === 'q' && this.props.searchQuery !== param[1]) {
-        this.props.onInitialQuery(param[1]);
-        this.props.onFetchSearchResults(param[1]);
-      }
+    const parsedQuery = qs.parse(this.props.location.search);
+
+    if (parsedQuery.q) {
+      this.props.onFetchSearchResults(parsedQuery.q);
     }
   }
 
-  componentDidUpdate() {
-    console.log('UPDATE');
+  componentDidUpdate(prevProps) {
+    const parsedQuery = qs.parse(this.props.location.search);
+    const parsedPrevQuery = qs.parse(prevProps.location.search);
+
+    if (parsedQuery.q && parsedQuery.q !== parsedPrevQuery.q) {
+      this.props.onFetchSearchResults(parsedQuery.q);
+    }
   }
 
   render() {
-    let results = <h2>No se han encontrado resultados</h2>;
+    let results = '';
 
     if (this.props.loading) {
       results = <Spinner />;
     }
 
+    if (this.props.error) {
+      results = <h2>Ha ocurrido un error. Por favor inténtalo de nuevo en unos minutos.</h2>;
+    }
+
     if (this.props.searchResults) {
-      results = (
-        <React.Fragment>
-          <Breadcrumb categories={this.props.searchResults.categories} />
-          <ProductList list={this.props.searchResults.items} />
-        </React.Fragment>
-      );
+      if (!this.props.searchResults.items.length) {
+        results = <h2>No hay publicaciones que coincidan con tu búsqueda.</h2>;
+      } else {
+        results = (
+          <React.Fragment>
+            {this.props.searchResults.categories.length ? (
+              <div className={styles.breadcrumbWrap}>
+                <Breadcrumb categories={this.props.searchResults.categories} />
+              </div>
+            ) : null}
+            <div>
+              <ProductList list={this.props.searchResults.items} />
+            </div>
+          </React.Fragment>
+        );
+      }
     }
     return (
       <Wrapper>
-        <h2>{this.props.searchQuery}</h2>
-        {results}
+        <div className={styles.searchResults}>{results}</div>
       </Wrapper>
     );
   }
@@ -54,9 +66,9 @@ class SearchResults extends Component {
 
 const mapStateToProps = state => {
   return {
-    searchQuery: state.query,
     searchResults: state.searchResults,
-    loading: state.loading
+    loading: state.loading,
+    error: state.error
   };
 };
 

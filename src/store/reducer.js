@@ -19,7 +19,8 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         searchResults: null,
-        loading: true
+        loading: true,
+        error: null
       };
     case actionTypes.FETCH_SEARCH_RESULTS_FAIL:
       return {
