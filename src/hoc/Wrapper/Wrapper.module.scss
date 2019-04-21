@@ -2,6 +2,6 @@
 
 .wrapper {
   margin: 0 auto;
-  max-width: calculateWidth(12);
-  padding: 0 (calculateWidth(1) + $column-gap);
+  max-width: calculateWidth(10) + (2 * $column-gap);
+  padding: 0 $column-gap;
 }

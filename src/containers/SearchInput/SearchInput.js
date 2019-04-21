@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
-import { connect } from 'react-redux';
-import * as actions from '../../store/actions/';
+import qs from 'query-string';
 
 import styles from './SearchInput.module.scss';
 import btnImage1x from '../../assets/images/ic_Search.png';
@@ -14,10 +13,20 @@ class searchInput extends Component {
 
   componentDidMount() {
     // Check for a initial query in the url
-    const query = new URLSearchParams(this.props.location.search);
-    for (let param of query.entries()) {
-      if (param[0] === 'q' && this.state.searchQuery !== param[1]) {
-        this.setState({ searchQuery: param[1] });
+    const parsedQuery = qs.parse(this.props.location.search);
+
+    if (parsedQuery.q && this.searchQuery !== parsedQuery.q) {
+      this.setState({ searchQuery: parsedQuery.q });
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    // If no more qs, empty the input
+    if (prevState.searchQuery === this.state.searchQuery) {
+      const parsedQuery = qs.parse(this.props.location.search);
+
+      if (!parsedQuery.q && this.state.searchQuery !== '') {
+        this.setState({ searchQuery: '' });
       }
     }
   }
@@ -32,8 +41,6 @@ class searchInput extends Component {
     e.preventDefault();
 
     if (this.state.searchQuery.length) {
-      //this.props.onSearchSubmit(this.state.searchQuery);
-
       this.props.history.push({
         pathname: '/items',
         search: '?q=' + this.state.searchQuery
@@ -58,15 +65,4 @@ class searchInput extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    onSearchSubmit: query => dispatch(actions.setQuery(query))
-  };
-};
-
-export default withRouter(
-  connect(
-    null,
-    mapDispatchToProps
-  )(searchInput)
-);
+export default withRouter(searchInput);

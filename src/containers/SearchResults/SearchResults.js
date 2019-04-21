@@ -4,6 +4,7 @@ import qs from 'query-string';
 import * as actions from '../../store/actions/';
 
 import Wrapper from '../../hoc/Wrapper/Wrapper';
+import Message from '../../components/UI/Message/Message';
 import Breadcrumb from '../../components/Breadcrumb/Breadcrumb';
 import ProductList from '../../components/ProductList/ProductList';
 import Spinner from '../../components/UI/Spinner/Spinner';
@@ -28,39 +29,35 @@ class SearchResults extends Component {
   }
 
   render() {
-    let results = '';
+    let resultsJsx = '';
 
     if (this.props.loading) {
-      results = <Spinner />;
+      resultsJsx = <Spinner />;
     }
 
     if (this.props.error) {
-      results = <h2>Ha ocurrido un error. Por favor inténtalo de nuevo en unos minutos.</h2>;
+      resultsJsx = (
+        <Message>Ha ocurrido un error. Por favor inténtalo de nuevo en unos minutos.</Message>
+      );
     }
 
     if (this.props.searchResults) {
       if (!this.props.searchResults.items.length) {
-        results = <h2>No hay publicaciones que coincidan con tu búsqueda.</h2>;
+        resultsJsx = <Message>No hay publicaciones que coincidan con tu búsqueda.</Message>;
       } else {
-        results = (
-          <React.Fragment>
+        resultsJsx = (
+          <div className={styles.searchResults}>
             {this.props.searchResults.categories.length ? (
               <div className={styles.breadcrumbWrap}>
                 <Breadcrumb categories={this.props.searchResults.categories} />
               </div>
             ) : null}
-            <div>
-              <ProductList list={this.props.searchResults.items} />
-            </div>
-          </React.Fragment>
+            <ProductList list={this.props.searchResults.items.slice(0, 4)} />
+          </div>
         );
       }
     }
-    return (
-      <Wrapper>
-        <div className={styles.searchResults}>{results}</div>
-      </Wrapper>
-    );
+    return <Wrapper>{resultsJsx}</Wrapper>;
   }
 }
 
@@ -74,7 +71,6 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onInitialQuery: query => dispatch(actions.setQuery(query)),
     onFetchSearchResults: query => dispatch(actions.fetchSearchResults(query))
   };
 };

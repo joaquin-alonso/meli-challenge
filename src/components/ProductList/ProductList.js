@@ -6,13 +6,13 @@ import ProductListItem from './ProductListItem/ProductListItem';
 const productList = props => {
   const list = props.list.map(listItem => (
     <li key={listItem.id}>
-      <ProductListItem {...listItem} />
+      <ProductListItem data={listItem} />
     </li>
   ));
 
   return (
     <div className={styles.productList}>
-      <ul>{list}</ul>
+      <ol>{list}</ol>
     </div>
   );
 };

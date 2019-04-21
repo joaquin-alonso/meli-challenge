@@ -3,18 +3,13 @@ import * as actionTypes from './actions/actionTypes';
 const initialState = {
   query: '',
   searchResults: null,
-  selectedProduct: null,
+  product: null,
   loading: false,
   error: null
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.SET_QUERY:
-      return {
-        ...state,
-        query: action.query
-      };
     case actionTypes.FETCH_SEARCH_RESULTS_START:
       return {
         ...state,
@@ -32,6 +27,25 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         searchResults: action.searchResults,
+        loading: false
+      };
+    case actionTypes.FETCH_PRODUCT_START:
+      return {
+        ...state,
+        product: null,
+        loading: true,
+        error: null
+      };
+    case actionTypes.FETCH_PRODUCT_FAIL:
+      return {
+        ...state,
+        loading: false,
+        error: action.error
+      };
+    case actionTypes.SET_PRODUCT:
+      return {
+        ...state,
+        product: action.product,
         loading: false
       };
     default:

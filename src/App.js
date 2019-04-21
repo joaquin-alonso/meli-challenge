@@ -3,7 +3,8 @@ import { Route, Switch } from 'react-router-dom';
 
 import Layout from './hoc/Layout/Layout';
 import Wrapper from './hoc/Wrapper/Wrapper';
-import ProductDetail from './containers/ProductDetail/ProductDetail';
+import Message from './components/UI/Message/Message';
+import Product from './containers/Product/Product';
 import SearchResults from './containers/SearchResults/SearchResults';
 
 class App extends Component {
@@ -11,21 +12,21 @@ class App extends Component {
     return (
       <Layout>
         <Switch>
-          <Route path="/items/:id" component={ProductDetail} />
+          <Route path="/items/:id" component={Product} />
           <Route path="/items" component={SearchResults} />
           <Route
             path="/"
             exact
             render={() => (
               <Wrapper>
-                <h2>Ingresa lo que estás buscando</h2>
+                <Message>Ingresa lo que estás buscando</Message>
               </Wrapper>
             )}
           />
           <Route
             render={() => (
               <Wrapper>
-                <h2>Página no encontrada</h2>
+                <Message>Página no encontrada</Message>
               </Wrapper>
             )}
           />

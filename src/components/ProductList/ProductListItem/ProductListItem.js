@@ -1,23 +1,24 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import { formatPriceAmount, formatPriceDecimals } from '../../../utility';
 import freeShippingImg1x from '../../../assets/images/ic_shipping.png';
 import freeShippingImg2x from '../../../assets/images/ic_shipping@2x.png';
 import styles from './ProductListItem.module.scss';
 
-const productListItem = props => (
-  <Link to={'/items/' + props.id} className={styles.productListItem}>
-    <div className={styles.image}>
-      <img src={props.picture} alt={props.title} />
-    </div>
+const productListItem = ({ data }) => (
+  <Link to={'/items/' + data.id} className={styles.productListItem}>
+    <figure className={styles.image}>
+      <img src={data.picture} alt={data.title} />
+    </figure>
     <div className={styles.description}>
       <p className={styles.price}>
-        <span className={styles.priceCurrency}>{props.price.currency}</span>
-        <span className={styles.priceAmount}>{props.price.amount}</span>
-        {props.price.decimals ? (
-          <span className={styles.priceDecimals}>{props.price.decimals}</span>
+        <span className={styles.priceCurrency}>{data.price.currency}</span>
+        <span className={styles.priceAmount}>{formatPriceAmount(data.price.amount)}</span>
+        {data.price.decimals ? (
+          <span className={styles.priceDecimals}>{formatPriceDecimals(data.price.decimals)}</span>
         ) : null}
-        {props.free_shipping ? (
+        {data.free_shipping ? (
           <img
             className={styles.priceIcon}
             src={freeShippingImg1x}
@@ -26,8 +27,8 @@ const productListItem = props => (
           />
         ) : null}
       </p>
-      <h4>{props.title}</h4>
-      <p className={styles.state}>{props.state_name}</p>
+      <h4>{data.title}</h4>
+      <p className={styles.state}>{data.state_name}</p>
     </div>
   </Link>
 );

@@ -1,15 +1,18 @@
 @import '../../variables.scss';
 
 .breadcrumb {
-  align-items: center;
-  display: flex;
+  display: block;
   list-style-type: none;
   margin: 0;
+  overflow: hidden;
   padding: 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .breadcrumbItem {
   color: $gray;
+  display: inline-block;
   font-size: 14px;
   line-height: 18px;
 }
@@ -20,7 +23,7 @@
 }
 
 .breadcrumbItem:last-child {
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .breadcrumbItem:last-child:after {
