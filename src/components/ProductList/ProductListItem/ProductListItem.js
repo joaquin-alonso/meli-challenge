@@ -27,7 +27,7 @@ const productListItem = ({ data }) => (
           />
         ) : null}
       </p>
-      <h4>{data.title}</h4>
+      <h4 className={styles.title}>{data.title}</h4>
       <p className={styles.state}>{data.state_name}</p>
     </div>
   </Link>

@@ -18,8 +18,8 @@
   color: #fff;
   transition: opacity 200ms ease;
   width: 100%;
-}
 
-.flashy:hover {
-  opacity: 0.8;
+  &:hover {
+    opacity: 0.8;
+  }
 }

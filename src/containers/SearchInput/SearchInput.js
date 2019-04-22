@@ -21,13 +21,12 @@ class searchInput extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    // If no more qs, empty the input
-    if (prevState.searchQuery === this.state.searchQuery) {
-      const parsedQuery = qs.parse(this.props.location.search);
+    const parsedQuery = qs.parse(this.props.location.search);
+    const parsedPrevQuery = qs.parse(prevProps.location.search);
 
-      if (!parsedQuery.q && this.state.searchQuery !== '') {
-        this.setState({ searchQuery: '' });
-      }
+    // If no more qs, empty the input
+    if (parsedQuery.q !== parsedPrevQuery.q) {
+      this.setState({ searchQuery: parsedQuery.q || '' });
     }
   }
 

@@ -25,31 +25,30 @@
   max-width: 680px;
   padding: $column-gap-large $column-gap-large 0;
   width: 100%;
-}
 
-.image img {
-  display: block;
-  max-height: (680px - $column-gap-large);
-  max-width: 100%;
-  // width: 100%;
+  img {
+    display: block;
+    max-height: (680px - $column-gap-large);
+    max-width: 100%;
+  }
 }
 
 .description {
   padding: $column-gap-large 0 $column-gap-large $column-gap-large;
-}
 
-.description h3 {
-  font-size: 28px;
-  font-weight: 600;
-  line-height: 32px;
-  margin: 0;
-}
+  h3 {
+    font-size: 28px;
+    font-weight: 600;
+    line-height: 32px;
+    margin: 0;
+  }
 
-.description p {
-  color: $gray;
-  font-size: 16px;
-  line-height: 20px;
-  margin: ($column-gap-large - 4px) 0 0;
+  p {
+    color: $gray;
+    font-size: 16px;
+    line-height: 20px;
+    margin: ($column-gap-large - 4px) 0 0;
+  }
 }
 
 .details {
