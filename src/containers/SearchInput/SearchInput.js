@@ -15,8 +15,8 @@ class searchInput extends Component {
     // Check for a initial query in the url
     const parsedQuery = qs.parse(this.props.location.search);
 
-    if (parsedQuery.q && this.searchQuery !== parsedQuery.q) {
-      this.setState({ searchQuery: parsedQuery.q });
+    if (parsedQuery.search && this.searchQuery !== parsedQuery.search) {
+      this.setState({ searchQuery: parsedQuery.search });
     }
   }
 
@@ -25,8 +25,8 @@ class searchInput extends Component {
     const parsedPrevQuery = qs.parse(prevProps.location.search);
 
     // If no more qs, empty the input
-    if (parsedQuery.q !== parsedPrevQuery.q) {
-      this.setState({ searchQuery: parsedQuery.q || '' });
+    if (parsedQuery.search !== parsedPrevQuery.search) {
+      this.setState({ searchQuery: parsedQuery.search || '' });
     }
   }
 
@@ -42,7 +42,7 @@ class searchInput extends Component {
     if (this.state.searchQuery.length) {
       this.props.history.push({
         pathname: '/items',
-        search: '?q=' + this.state.searchQuery
+        search: '?search=' + this.state.searchQuery
       });
     }
   };

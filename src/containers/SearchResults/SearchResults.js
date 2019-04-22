@@ -14,8 +14,8 @@ class SearchResults extends Component {
   componentDidMount() {
     const parsedQuery = qs.parse(this.props.location.search);
 
-    if (parsedQuery.q) {
-      this.props.onFetchSearchResults(parsedQuery.q);
+    if (parsedQuery.search) {
+      this.props.onFetchSearchResults(parsedQuery.search);
     }
   }
 
@@ -23,8 +23,8 @@ class SearchResults extends Component {
     const parsedQuery = qs.parse(this.props.location.search);
     const parsedPrevQuery = qs.parse(prevProps.location.search);
 
-    if (parsedQuery.q && parsedQuery.q !== parsedPrevQuery.q) {
-      this.props.onFetchSearchResults(parsedQuery.q);
+    if (parsedQuery.search && parsedQuery.search !== parsedPrevQuery.search) {
+      this.props.onFetchSearchResults(parsedQuery.search);
     }
   }
 

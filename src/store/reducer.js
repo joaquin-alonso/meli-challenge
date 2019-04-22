@@ -1,7 +1,6 @@
 import * as actionTypes from './actions/actionTypes';
 
 const initialState = {
-  query: '',
   searchResults: null,
   product: null,
   loading: false,
