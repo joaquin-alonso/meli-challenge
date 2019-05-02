@@ -14,7 +14,11 @@ export const fetchSearchResults = query => {
         dispatch(setSearchResults(response.data));
       })
       .catch(error => {
-        dispatch(fetchSearchResultsFail(error.response));
+        const er = error.response || {
+          status: error.status || 500,
+          message: error.message
+        };
+        dispatch(fetchSearchResultsFail(er));
       });
   };
 };
@@ -52,7 +56,11 @@ export const fetchProduct = id => {
         dispatch(setProduct(response.data));
       })
       .catch(error => {
-        dispatch(fetchProductFail(error.response));
+        const er = error.response || {
+          status: error.status || 500,
+          message: error.message
+        };
+        dispatch(fetchProductFail(er));
       });
   };
 };

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { formatPriceAmount, formatPriceDecimals } from '../../utility';
+import { formatPriceAmount, formatPriceDecimals } from '../../shared/utility';
 import Button from '../UI/Button/Button';
 import styles from './ProductDetail.module.scss';
 

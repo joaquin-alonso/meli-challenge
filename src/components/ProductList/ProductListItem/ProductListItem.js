@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { formatPriceAmount, formatPriceDecimals } from '../../../utility';
+import { formatPriceAmount, formatPriceDecimals } from '../../../shared/utility';
 import freeShippingImg1x from '../../../assets/images/ic_shipping.png';
 import freeShippingImg2x from '../../../assets/images/ic_shipping@2x.png';
 import styles from './ProductListItem.module.scss';
